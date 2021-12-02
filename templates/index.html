@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid Tracker</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/leaflet-providers.js') }}"></script>
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@2.5.2/dist/esri-leaflet.js"
+    integrity="sha512-vC48cQq5LmjsPvqNIIoED0aUZ8POSJ0Z1mVexOqjVjAsJo32QUoT/2Do4kFKJjuPLIonpb/Hns7EqZ1LrlwSzw=="
+    crossorigin=""></script>
+    <!-- Load Esri Leaflet Geocoder from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css"
+    integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
+    crossorigin="">
+    <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js"
+    integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
+    crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="http://d3js.org/d3.v2.min.js?2.9.3"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="hover-preview">
+        <div id="hover-name"></div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><span id="hover-cases"></span> Cases</span>
+                <span class="badge" id="hover-cases-increase"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><span id="hover-deaths"></span> Deaths</span>
+                <span class="badge" id="hover-deaths-increase"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><span id="hover-recoveries"></span> Recoveries</span>
+              <span class="badge" id="hover-recoveries-increase"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><span id="hover-tests"></span> Tests</span>
+              <span class="badge" id="hover-tests-increase"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><span id="hover-population"></span></span>
+            </li>
+          </ul>
+    </div>
+    <div class="map-container">
+        <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom">
+        <button id="bottomBar" class="btn btn-light show-container">View Report</button>
+        
+        <div id="topBar">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <button class="btn btn-secondary" data-toggle="collapse" href="#mapOptionButtons" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Map Options</button>
+                <button type="button" class="btn btn-ligt">Test</button>
+                <p>
+                    
+                </p>
+                <div id="mapOptionButtons" class="collapse">
+                    <div class="btn-group-vertical">
+                        <h6>Map Options</h6>  
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Show Cities</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Show Counties</label>
+                            </div>
+                    </div>
+                </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div class="show-container">
+            <blockquote>
+                <h6 class="mb-0"><span id="report-name">United States</span> COVID-19 Report</h6>
+                <footer class="blockquote-footer">Graphs & Data Visualization</footer>
+            </blockquote>
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-secondary show-map">View map</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/edgebuffer.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/leaflet-heat.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/usaDataset.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/legend.js') }}"></script>
+</body>
+</html>

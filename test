@@ -1,0 +1,155 @@
+Dataset1 (for state,USA) {
+	Type: (country, state, county, college, testingCenter),
+	Longitude,
+	Latitude,
+	Country: “USA”,
+	State,
+	Population,
+	Demographic,
+	DataSource,
+	Tests: {
+		Total,
+		TotalMonth:
+		TotalWeek:
+		TotalDay:
+		TotalPositve,
+		MonthPostive:
+		WeekPositve:
+		DayPostive:
+		TotalNegative
+		MonthNegative:
+		WeekNegative:
+		DayNegative:
+		TotalNegative:
+		MonthNegative:
+		WeekNegative:
+		DayNegative:
+		}
+		UniqueCases: {
+		Total,
+		TotalMonth:
+		TotalWeek:
+		TotalDay:
+		TotalPositve,
+		MonthPostive:
+		WeekPositve:
+		DayPostive:
+		TotalNegative
+		MonthNegative:
+		WeekNegative:
+		DayNegative:
+TotalNegative
+		MonthNegative:
+		WeekNegative:
+		DayNegative:
+
+
+
+		
+The below will have array values consisting of the magnitude of cases in percentages relative to the previous month as well as the total number of cases increases
+CurrentIncreaseInpositveTest
+		PercentageOfCassesPostiveMonth,
+PercentageOfCassesPostiveWeek,
+PercentageOfCassesPostiveCurrent,
+
+##Unique cases
+CurrentIncreaseInpositveTest
+		PercentageOfCassesPostiveMonth,
+PercentageOfCassesPostiveWeek,
+PercentageOfCassesPostiveCurrent,
+	
+		
+:
+
+	}
+Recoveries:{
+		AllTime:,
+		Month:
+		Week:
+		Day:
+
+
+The below will have array values consisting of the magnitude of recoveries in percentages relative to the previous month as well as the total number of cases increases
+
+		RecoveryIncreaseMonthPercentageCurrent:
+RecoveryIncreaseWeekPercentageCurrent:
+
+RecoveryIncreaseDayPercentageCurrent`:
+
+ 
+}
+	Deaths: {
+		AllTime: 
+		Month,
+		Week,
+		Day:
+		
+The below will have array values consisting of the magnitidue of death in percentages relative to the previous month as well as the total number of cases increases. As well as data relative to the population
+
+		DeathIncreaseMonthPercentageCurrent:
+DeathIncreaseWeekPercentageCurrent:
+DeathIncreaseDayPercentageCurrent`:
+
+	}
+	
+	Hospitalized:{
+		MonthCummilitve, 
+		WeekCummilitve,
+		DayCummilitve,
+		MonthCurrent, 
+		WeekCurrent,
+		DayCurrent,
+
+The below will have array values consisting of the magnitude of hospitalized in percentages relative to the previous month as well as the total number of cases increases.  As well as data relative to the population
+
+
+		CumuilativeHospitalizedIncreaseMonthPercentage:
+CumuilativeHospitalizedWeekPercentage:
+CumuilativeHospitalizedIncreaseDayPercentage:
+
+}
+
+inICU:{
+MonthCummilitve, 
+		WeekCummilitve,
+		DayCummilitve,
+		MonthCurrent, 
+		WeekCurrent,
+		DayCurrent,
+
+
+The below will have array values consisting of the magnitidue of ICU in percentages relative to the previous month as well as the total number of cases increases. As well as data relative to the population
+
+		CumuilativeICUIncreaseMonthPercentage:
+CumuilativeICUWeekPercentage:
+CumuilativeICUIncreaseDayPercentage:
+
+
+}
+
+
+Ventilators: {
+MonthCummilitve, 
+		WeekCummilitve,
+		DayCummilitve,
+		MonthCurrent, 
+		WeekCurrent,
+		DayCurrent,
+
+
+The below will have array values consisting of the magnitude of Ventilator in percentages relative to the previous month as well as the total number of cases increases. As well as data relative to the population
+
+		CumuilativeVentilatorIncreaseMonthPercentage:
+CumuilativeVentilatorWeekPercentage:
+CumuilativeVentilatorIncreaseDayPercentage:
+
+
+}
+
+Vaccinations: {
+TotalDistributed,
+TotalAdministrated,
+
+}
+
+}

@@ -1,0 +1,66 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+    width: 100vw;
+ }
+ .map-container {
+     position: relative;
+     width: 100%;
+     height: 100%;
+     border: 1px solid black;
+ }
+#map {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    position: relative;
+    z-index: 1;
+}
+.legend {
+    line-height: 18px;
+    color: dimgray;
+}
+.info, .legend, .leaflet-popup-content-wrapper {
+    padding: 8px 8px !important;
+}
+.leaflet-popup-content {
+    margin: 8px;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.5;
+}
+#bottomBar {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    border-radius: 16px;
+    padding: 16px;
+    background-color: whitesmoke;
+    max-width: calc(100vw - 32px);
+    z-index: 700;
+}
+.leaflet-bar, #bottomBar, .info, .leaflet-popup-content-wrapper {
+    border: 1px solid white !important;
+    border-radius: .25rem !important;
+    background-color: white;
+    -webkit-box-shadow: 4px 4px 16px -8px rgba(0,0,0,0.6) !important;
+    -moz-box-shadow: 4px 4px 16px -8px rgba(0,0,0,0.6) !important;
+    box-shadow: 4px 4px 16px -8px rgba(0,0,0,0.6) !important;
+}
+
+.leaflet-control-zoom-out, .leaflet-control-zoom-in {
+    font-weight: lighter !important;
+}
+.material-icons {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    z-index: 700 !important;
+    background-color: var(--primary) !important;
+}
